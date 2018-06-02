@@ -1,0 +1,71 @@
+#include "echiquier.h"
+Echiquier::Echiquier()
+{
+    QLabel *caseNoire = new QLabel();
+     caseNoire->setBackgroundRole(QPalette:: Dark);
+     caseNoire->setScaledContents(true);
+    QPixmap pix("caseNoire.jpg");
+     caseNoire->setPixmap(pix);
+     
+    QLabel *caseBlanche = new QLabel();
+    caseBlanche->setBackgroundRole(QPalette:: Dark);
+    caseBlanche->setScaledContents(true);
+    QPixmap pix2("caseBlanche.jpg");
+    caseBlanche->setPixmap(pix2);
+     
+    QGridLayout *plateau = new QGridLayout();
+    plateau->addWidget(caseNoire, 0, 1);
+    plateau->addWidget(caseBlanche, 0, 2);
+    plateau->addWidget(caseNoire, 1, 0);
+    plateau->addWidget(caseBlanche, 1, 2);
+}
+#include "fenetre.h"
+ 
+Fenetre::Fenetre() : QMainWindow()
+{
+    //pr compatibilité avec 800*600
+    setFixedSize(700, 600);
+    QWidget *zoneCentrale = new QWidget;
+     
+    //creation du widget central
+    setCentralWidget(zoneCentrale);
+     
+     
+     
+    /************************************************
+         **     Barre de Menu : Onglet Menu   **
+     ************************************************/
+ 
+    QMenu *menuMenu = menuBar()->addMenu(" &Menu ");
+     
+    QAction *actionNouvellePartie = menuMenu-> addAction(" &Nouvelle Partie ");
+    connect(actionNouvellePartie, SIGNAL(triggered()), qApp, SLOT(debutPartie()));
+     
+    QAction *actionQuitter = menuMenu->addAction(" &Quitter ");
+    connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
+     
+     
+     
+    /************************************************
+     **     Barre de Menu : Onglet A Propos   **
+     ************************************************/
+     
+    QMenu *menuApropos = menuBar()->addMenu(" &A Propos ");
+     
+}
+/* pas de destructeur
+   Qt supprime tous les widget enfants en mémoire
+*/
+#ifndef DEF_FENETRE
+#define DEF_FENETRE
+ 
+#include <QtGui>
+ 
+class Fenetre : public QMainWindow //heritage
+{
+public:
+    Fenetre();
+ 
+     
+};
+#endif
