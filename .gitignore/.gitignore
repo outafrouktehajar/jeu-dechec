@@ -69,3 +69,30 @@ public:
      
 };
 #endif
+
+include <QtGui>
+ 
+#include "fenetre.h"
+#include "echiquier.h"
+using namespace std;
+ 
+/* inclu toutes les classes de Qt
+    #include <QtGui>
+*/
+ 
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+ 
+    //QWidget qui sert de fenetre
+    Fenetre fenetre;
+    fenetre.setStyleSheet("background-color: rgb(81,141,207)");
+     
+    //affichage de la fenetre
+    fenetre.show();
+     
+    //lancement de l'appli
+    return app.exec();
+ 
+}
+
