@@ -96,3 +96,24 @@ int main(int argc, char *argv[])
  
 }
 
+
+
+#ifndef DEF_FENETRE
+#define DEF_FENETRE
+ 
+#include <QtGui>
+ 
+class Fenetre : public QMainWindow //heritage
+{
+public:
+    Fenetre();
+ 
+     
+};
+ 
+ 
+ 
+ 
+#endif
+
+
